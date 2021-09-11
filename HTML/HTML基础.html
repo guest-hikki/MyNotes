@@ -1,0 +1,505 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:HTML基础</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="html-">HTML基础</h1>
+<h3 id="-">一、基本标签</h3>
+<ol>
+<li><p>分类：</p>
+<blockquote>
+<ul>
+<li>单标签：仅由一个标签组成的标签（如：<code>&lt;br/&gt;</code>或<code>&lt;br&gt;</code>）</li>
+<li>双标签：由两个标签组成的标签（如：<code>&lt;html&gt;</code>HTML文档<code>&lt;/html&gt;</code>）</li>
+</ul>
+</blockquote>
+</li>
+<li><p>HTML基本结构标签</p>
+<p>|      标签名       |    定义    |                           说明                           |
+| :---------------: | :--------: | :------------------------------------------------------: |
+|  <code>&lt;html&gt;&lt;/html&gt;</code>  |  HTML标签  |             页面中最大的标签，我们称为根标签             |
+|  <code>&lt;head&gt;&lt;/head&gt;</code>  | 文档的头部 |       注意在head标签中我们必须要设置的标签是title        |
+| <code>&lt;title&gt;&lt;/title&gt;</code> | 文档的标题 |               让页面拥有一个自己的网页标题               |
+|  <code>&lt;body&gt;&lt;/body&gt;</code>  | 文档的主体 | 元素包含文档的所有内容，页面内容基本上都是放到body里面的 |</p>
+</li>
+<li><p>HTML分段标签</p>
+<p>|          标签名           |                             语义                             |
+| :-----------------------: | :----------------------------------------------------------: |
+| <code>&lt;h1&gt;&lt;/h1&gt;</code> ~ <code>&lt;h6&gt;&lt;/h6&gt;</code> | 标题标签。一共有六级，并且重要性依次递减。 加了标题标签的文字，会单独作为一行并加粗 |
+|         <code>&lt;p&gt;&lt;/p&gt;</code>         |   段落标签。把html文档分成若干的段落，段落后会添加一个空行   |
+|       <code>&lt;br/&gt;或&lt;br&gt;</code>       |                换行标签。会将html文档强制换行                |</p>
+</li>
+<li><p>HTML文本格式化标签</p>
+<p>|  语义  |              标签              |                   说明                    |
+| :----: | :----------------------------: | :---------------------------------------: |
+|  加粗  | <code>&lt;strong&gt;&lt;/strong&gt;</code>或<code>&lt;b&gt;&lt;/b&gt;</code> |  更推荐使用<strong>标签加粗，语义更强烈   |
+|  倾斜  |     <code>&lt;em&gt;&lt;/em&gt;</code>或<code>&lt;i&gt;&lt;/i&gt;</code>     |  更推荐使用<em>标签添加倾斜，语义更强烈   |
+| 删除线 |    <code>&lt;del&gt;&lt;/del&gt;</code>或<code>&lt;s&gt;&lt;/s&gt;</code>    | 更推荐使用<del>标签添加删除线，语义更强烈 |
+| 下划线 |    <code>&lt;ins&gt;&lt;/ins&gt;</code>或<code>&lt;u&gt;&lt;/u&gt;</code>    | 更推荐使用<ins>标签添加下划线，语义更强烈 |</p>
+</li>
+<li><p>HTML布局标签</p>
+<p>| 语义 |      标签       |                             说明                             |
+| :--: | :-------------: | :----------------------------------------------------------: |
+|  无  |  <code>&lt;div&gt;&lt;/div&gt;</code>  | div标签没有语义，是用来布局的，一行只能放一个div标签，可以理解为一个大盒子 |
+|  无  | <code>&lt;span&gt;&lt;/span&gt;</code> | span标签没有语义，是用来布局的，一行可以放多个span标签，可以理解为一个小盒子 |</p>
+</li>
+<li><p>HTML图像标签：<code>&lt;img/&gt;</code></p>
+<blockquote>
+<p> 属性：</p>
+<p>|  属性  |  属性值  |                  说明                  |
+| :----: | :------: | :------------------------------------: |
+|  src   | 图片路径 |                必须属性                |
+|  alt   |   文本   |   替换文本，图片不能显示时的提示文字   |
+| title  |   文本   | 提示文本，鼠标停留在图像上时的提示文字 |
+| width  |   像素   |              设置图像宽度              |
+| height |   像素   |              设置图像高度              |
+| border |   像素   |           设置图像边框的粗细           |</p>
+<p>Note：</p>
+<ol>
+<li>属性添加到img之后</li>
+<li>属性之间没有先后顺序</li>
+<li>属性采取键值对的格式，即key = &quot;value&quot;，属性 = “属性值”</li>
+<li>修改宽度和高度时，只需修改其中一个即可，剩下一个会等比例修改</li>
+</ol>
+</blockquote>
+</li>
+<li><p>HTML超链接标签：<code>&lt;a&gt;&lt;/a&gt;</code></p>
+<blockquote>
+<p>属性：</p>
+<p>|  属性  |                            属性值                            |                            说明                             |
+| :----: | :----------------------------------------------------------: | :---------------------------------------------------------: |
+|  href  | 指定链接目标的url地址<br>外部链接的语法要求：必须以http://开头<br>内部链接：文件夹中的html文件名<br>空链接：#<br> 下载链接：待下载的文件名<br> 锚点链接：点击链接快速定位到页面的某个位置<br>阻止链接跳转：javascript:; |                       用于创建超链接                        |
+| target | _self：在当前页面打开链接<br> _blank：创建一个新页面打开链接 | 用于指定链接页面的打开方式，<br>若不指定则以_self作为默认值 |</p>
+<p>格式：<code>&lt;a href = &quot;待链接的url地址&quot;&gt; 网页元素 &lt;/a&gt;</code></p>
+<p>锚点链接的使用</p>
+<ol>
+<li>给待链接的网页元素添加一个链接：<code>&lt;a href=&quot;#标记&quot;&gt; 网页元素 &lt;/a&gt;</code></li>
+<li>给待跳转至的网页元素的标签中添加一个属性：<code>id=“标记”</code></li>
+</ol>
+</blockquote>
+</li>
+<li><p>HTML5的语义化标签 —— 代替原有滥用的div标签</p>
+<p>|    标签     |                       语义                        |
+| :---------: | :-----------------------------------------------: |
+| <code>&lt;header&gt;</code>  |                     头部标签                      |
+|   <code>&lt;nav&gt;</code>   |                     导航标签                      |
+| <code>&lt;article&gt;</code> |                     内容标签                      |
+| <code>&lt;section&gt;</code> | 定义文档的某个区域（相当于以前div装内容的小盒子） |
+|  <code>&lt;aside&gt;</code>  |                    侧边栏标签                     |
+| <code>&lt;footer&gt;</code>  |                     尾部标签                      |</p>
+<p><img src="images/HTML基础/image-20210810113526521.png" alt="image-20210810113526521" style="zoom:50%;" /></p>
+</li>
+<li><p>HTML5新增多媒体标签</p>
+<blockquote>
+<ul>
+<li><p>视频标签：<code>&lt;video src=&quot;文件地址&quot; controls=&quot;controls&quot;&gt;&lt;/video&gt;</code></p>
+<p><img src="images/HTML基础/image-20210810113848531.png" alt="image-20210810113848531"></p>
+</li>
+<li><p>音频标签：<code>&lt;audio src=&quot;文件地址&quot; controls=&quot;controls&quot;&gt;&lt;/audio&gt;</code></p>
+<p><img src="images/HTML基础/image-20210810113936369.png" alt="image-20210810113936369"></p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h3 id="-">二、特殊字符</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">特殊字符</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">字符的代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">空格符</td>
+<td style="text-align:center"><code>&amp;nbsp;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;</td>
+<td style="text-align:center">小于号</td>
+<td style="text-align:center"><code>&amp;it;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;</td>
+<td style="text-align:center">大于号</td>
+<td style="text-align:center"><code>$gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">&amp;</td>
+<td style="text-align:center">和号</td>
+<td style="text-align:center"><code>&amp;amp;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">￥</td>
+<td style="text-align:center">人民币</td>
+<td style="text-align:center"><code>&amp;yen;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">©</td>
+<td style="text-align:center">版权</td>
+<td style="text-align:center"><code>&amp;copy;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">®</td>
+<td style="text-align:center">注册商标</td>
+<td style="text-align:center"><code>&amp;reg;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">­°C</td>
+<td style="text-align:center">摄氏度</td>
+<td style="text-align:center"><code>&amp;deg;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">±</td>
+<td style="text-align:center">正负号</td>
+<td style="text-align:center"><code>&amp;plusmn;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">×</td>
+<td style="text-align:center">乘号</td>
+<td style="text-align:center"><code>&amp;times;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">÷</td>
+<td style="text-align:center">除号</td>
+<td style="text-align:center"><code>&amp;divede;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">²</td>
+<td style="text-align:center">平方</td>
+<td style="text-align:center"><code>&amp;sup2;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">³</td>
+<td style="text-align:center">立方</td>
+<td style="text-align:center"><code>&amp;sup3;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="-">三、表格</h3>
+<ol>
+<li><p>表格使用到的标签</p>
+<p>|      语义      |       标签        |                说明                 |
+| :------------: | :---------------: | :---------------------------------: |
+|    定义表格    | <code>&lt;table&gt;&lt;/table&gt;</code> |          最外层嵌套的标签           |
+|  定义表格头部  | <code>&lt;thead&gt;&lt;/thead&gt;</code> | 表格结构标签，必须嵌套在table标签中 |
+|  定义表格主体  | <code>&lt;tbody&gt;&lt;/tbody&gt;</code> | 表格结构标签，必须嵌套在table标签中 |
+|     定义行     |    <code>&lt;tr&gt;&lt;/tr&gt;</code>    |        必须嵌套在table标签中        |
+|   定义单元格   |    <code>&lt;td&gt;&lt;/td&gt;</code>    |         必须嵌套在tr标签中          |
+| 定义表头单元格 |    <code>&lt;th&gt;&lt;/th&gt;</code>    |     会让填入的数据居中加粗显示      |</p>
+</li>
+<li><p>表格的属性：在table标签中使用（一般不会使用HTML来定义表格的格式，而是使用CSS来设定）</p>
+<p>|   属性名    |          属性值           |                    描述                     |
+| :---------: | :-----------------------: | :-----------------------------------------: |
+|    align    |    left、center、right    |       规定表格相对周围元素的对齐方式        |
+|   border    | 1（有边框）或&quot;&quot;（无边框） |     规定表格单元是否拥有边框，默认为“”      |
+| cellpadding |          像素值           | 规定单元边沿与其内容之间的空白，默认为1像素 |
+| cellspacing |          像素值           |      规定单元格之间的空白，默认为2像素      |
+|    width    |      像素值或百分比       |               规定表格的宽度                |
+|   height    |          像素值           |               规定表格的高度                |</p>
+</li>
+<li><p>示例：</p>
+<pre><code class="lang-html">&lt;table align=&quot;center&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding = &quot;10&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;集数&lt;/th&gt;
+            &lt;th&gt;单集标题&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;第1集&lt;/td&gt;
+            &lt;td&gt;&lt;a href=&quot;#Episode_01&quot;&gt; 网球社“丘比特”&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;第2集&lt;/td&gt;
+            &lt;td&gt;&lt;a href=&quot;#Episode_02&quot;&gt; 电影社“禊”&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;    
+            &lt;td&gt;第3集&lt;/td&gt;
+            &lt;td&gt;&lt;a href=&quot;#Episode_03&quot;&gt; 自行车同好会 向日葵&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;/table&gt;
+</code></pre>
+<p><img src="images/HTML基础/image-20210810114908843.png" alt="image-20210810114908843"></p>
+</li>
+<li><p>合并单元格</p>
+<blockquote>
+<ol>
+<li><p>合并单元格的方式（属性）—— 作用与td标签上：</p>
+<blockquote>
+<p>跨行合并：rowspan = “合并单元格的个数”
+跨列合并：colspan = “合并单元格的个数”</p>
+</blockquote>
+</li>
+<li><p>目标单元格：</p>
+<blockquote>
+<p>跨行合并：则目标单元格为待合并单元格中最上侧的单元格</p>
+<p>跨列合并：则目标单元格为待合并单元格中最左侧的单元格</p>
+</blockquote>
+</li>
+<li><p>合并的步骤：</p>
+<blockquote>
+<ol>
+<li>确定是跨行还是跨列</li>
+<li>找到目标单元格，将合并单元格的属性添加到目标单元格的属性中</li>
+<li>删除多余的单元格</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<h3 id="-">四、列表</h3>
+<ol>
+<li><p>作用：用来布局</p>
+</li>
+<li><p>无序列表标签：</p>
+<p>|     语义     |    标签     |                         说明                         |
+| :----------: | :---------: | :--------------------------------------------------: |
+| 定义无序列表 | <code>&lt;ul&gt;&lt;/ul&gt;</code> | ur标签中只能嵌套li标签，其它所有的数据元素都不能使用 |
+|  定义列表项  | <code>&lt;li&gt;&lt;/li&gt;</code> |         相当于一个容器，里面可以嵌套任何内容         |</p>
+<blockquote>
+<p>去掉li前面的小圆点：给li添加属性—— list-style: none</p>
+</blockquote>
+</li>
+<li><p>有序列表标签：</p>
+<p>|     语义     |    标签     |                         说明                         |
+| :----------: | :---------: | :--------------------------------------------------: |
+| 定义有序列表 | <code>&lt;ol&gt;&lt;/ol&gt;</code> | or标签中只能嵌套li标签，其它所有的数据元素都不能使用 |
+|  定义列表项  | <code>&lt;li&gt;&lt;/li&gt;</code> |         相当于一个容器，里面可以嵌套任何内容         |</p>
+</li>
+<li><p>自定义列表标签：应用于一个大哥带着一群小弟的场景（dt和dd是兄弟关系）</p>
+<p>|       语义       |    标签     |                           说明                           |
+| :--------------: | :---------: | :------------------------------------------------------: |
+|  定义自定义列表  | <code>&lt;dl&gt;&lt;/dl&gt;</code> | dl标签中只能嵌套dt和dd标签，其它所有的数据元素都不能使用 |
+| 定义“大哥”列表项 | <code>&lt;dt&gt;&lt;/dt&gt;</code> |             每个自定义列表可以含有多个dt标签             |
+| 定义“小弟”列表项 | <code>&lt;dd&gt;&lt;/dd&gt;</code> |             每个自定义列表可以含有多个dd标签             |</p>
+</li>
+</ol>
+<h3 id="-">五、表单</h3>
+<ol>
+<li><p>作用：收集用户信息</p>
+</li>
+<li><p>组成：</p>
+<blockquote>
+<ul>
+<li><p>表单域：包含表单元素的区域</p>
+</li>
+<li><p>表单控件（也称表单元素）：按钮、方框等让用户填入信息的“道具”</p>
+</li>
+<li><p>提示信息：文字提示</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>表单域：实现用户信息的收集和传递，即将用户输入提交给后台</p>
+<blockquote>
+<ol>
+<li><p>标签：<code>&lt;form&gt;&lt;/form&gt;</code></p>
+</li>
+<li><p>属性：</p>
+<p>|  属性  |  属性值  |                       作用                       |
+| :----: | :------: | :----------------------------------------------: |
+| action | url地址  | 用于指定接受并处理表单数据的服务器程序的url地址  |
+| method | get/post |  用于设置表单数据的提交方式，其取值为get或post   |
+|  name  |   名称   | 用于指定表单的名称，以区分同一页面中的多个表单域 |</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>表单元素</p>
+<p>|     语义     |                             标签                             |                             说明                             |
+| :----------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| 输入表单元素 |                  <code>&lt;input type = &quot;属性值&quot;/&gt;</code>                  |            通过设置不同的属性值设置不同的表单控键            |
+| 下拉表单元素 | <img src="images/HTML基础/image-20210810115959075.png" alt="image-20210810115959075" style="zoom:67%;" /> | <code>&lt;select&gt;</code>中至少包含一个<code>&lt;option&gt;</code><br>在<code>&lt;option&gt;</code>中添加属性<code>select = &quot;selected&quot;</code>，<br>可设置当前项为默认选项 |
+|  文本域元素  |                   <code>&lt;textarea&gt;&lt;/textarea&gt;</code>                    | 可以读入很多内容的文本框<br>属性：<br>cols = “每行显示字符数”<br>rows = “显示的行数”<br>注： 一般使用CSS来改变文本域大小 |</p>
+<blockquote>
+<p>==input表单==</p>
+<ul>
+<li><p>type属性的属性值</p>
+<p>|  属性值  |                             描述                             |
+| :------: | :----------------------------------------------------------: |
+|  button  |       定义可点击按钮（多数情况下，用于通过JS启动脚本）       |
+| checkbox |         定义复选框（所有选项必须要有相同的name属性）         |
+|   file   |             定义输入字段和“浏览”按钮，供文件上传             |
+|  hidden  |                      定义隐藏的输入字段                      |
+|  image   |                    定义图像形式的提示按钮                    |
+| password |             定义密码字段。该字段中的字符被掩码。             |
+|  radio   |        定义单选按钮（所有选项必须要有相同的name属性）        |
+|  reset   |         定义重置按钮。重置按钮会清除表单中的所有数据         |
+|  submit  |        定义提交按钮。提交按钮会把表单数据发送到服务器        |
+|   text   | 定义单行的输入字段，用户可在其中输入文本。默认宽度为20个字符 |</p>
+<blockquote>
+<p>HTML5新增type属性值：</p>
+<p>| 属性值 |            描述             |
+| :----: | :-------------------------: |
+| email  | 限制用户输入必须为Email类型 |
+|  url   |  限制用户输入必须为URL类型  |
+|  date  | 限制用户输入必须为日期类型  |
+|  time  | 限制用户输入必须为时间类型  |
+| month  |  限制用户输入必须为月类型   |
+|  week  |  限制用户输入必须为周类型   |
+| number | 限制用户输入必须为数字类型  |
+|  tel   |          手机号码           |
+| search |           搜索框            |
+| color  |    生成一个颜色选择表单     |</p>
+</blockquote>
+</li>
+<li><p>其它属性：</p>
+<p>|   属性    |    属性值    |                             描述                             |
+| :-------: | :----------: | :----------------------------------------------------------: |
+|   name    | 由用户自定义 |                     定义input元素的名称                      |
+|   value   | 由用户自定义 |                      规定input元素的值                       |
+|  checked  |   checked    | 规定此input元素首次加载时应当被选中（主要使用在单选按钮和复选框） |
+| maxlength |    正整数    |                规定输入字段中的字符的最大长度                |</p>
+<blockquote>
+<p>name和value是每个表单元素都有的属性值，主要给后台人员使用</p>
+</blockquote>
+<blockquote>
+<p>HTML5新增的表单属性：</p>
+<p>|      属性       |    值     |                             说明                             |
+| :-------------: | :-------: | :----------------------------------------------------------: |
+|    required     | required  |               表单拥有该属性说明其内容不能为空               |
+| <strong>placeholder</strong> | 提示文本  |              表单的提示信息，存在默认值将不显示              |
+|    autofocus    | autofocus |         自动聚焦属性，页面加载完成将自动聚焦到此表单         |
+|  autocomplete   |  off/on   | 键入时i，浏览器会给予之前键入过的值，显示出应该在字段中填写的选项<br>默认为打开状态<br>需要放在表单内，同时加上name属性，同时成功提交 |
+|  <strong>multiple</strong>   | multiple  |                       可以多选文件提交                       |</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p><code>&lt;label&gt;</code>标签：通常在表单中使用</p>
+<blockquote>
+<ol>
+<li><p>作用：<code>&lt;label&gt;</code>标签用于绑定一个表单元素，当点击<label>标签内的文本时，浏览器就会自动将焦点（光标）转到或者选择对应的表单元素上，用来增加用户体验</p>
+</li>
+<li><p>语法：</p>
+<pre><code class="lang-html">&lt;!-- 在label标签中使用for属性设置一个标记值，再在对应的表单元素添加一个id属性，其值为for中设计的标记值 --&gt;
+&lt;label for=&quot;sex&quot;&gt;男&lt;/label&gt;
+&lt;input type = &quot;radio&quot; name = &quot;SEX&quot; id = &quot;sex&quot;/&gt;
+</code></pre>
+<blockquote>
+<p>关键：lable标签的for属性与相关元素的id属性相同</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<h3 id="-emment-">六、Emment语法</h3>
+<ul>
+<li><p>快速生成HTML结构的Emment语法</p>
+<p>|          HTML结构           |                        Emment语法                         |   示例    |                           生成内容                           |
+| :-------------------------: | :-------------------------------------------------------: | :-------: | :----------------------------------------------------------: |
+|          生成标签           |                直接输入标签名，在按下tab键                |    div    |                        <code>&lt;div&gt;&lt;/div&gt;</code>                        |
+|      生成多个相同标签       |               在标签名后面加上<em>和待生成数目               |   div</em>3   |     <code>&lt;div&gt;&lt;/div&gt;</code><br><code>&lt;div&gt;&lt;/div&gt;</code><br><code>&lt;div&gt;&lt;/div&gt;</code>      |
+|    生成带有父子级的标签     |                       父标签&gt;子标签                       |   ul&gt;li   |           <code>&lt;ul&gt;</code><br>    <code>&lt;li&gt;&lt;/li&gt;</code><br>  <code>&lt;/ul&gt;</code>           |
+|    生成带有兄弟级的标签     |                       标签+兄弟标签                       |   div+p   |                <code>&lt;div&gt;&lt;/div&gt;</code><br><code>&lt;p&gt;&lt;/p&gt;</code>                |
+|     生成带有类名的标签      | 在标签名后加上.类名 <br>（若不写标签名则默认生成div标签） |  p.demo   |                   <code>&lt;p class=&quot;demo&quot;&gt;&lt;/p&gt;</code>                   |
+|    生成带有id名字的标签     | 在标签名后加上#id名 <br>（若不写标签名则默认生成div标签） |   #two    |                   <code>&lt;div id=&quot;two&quot;&gt;&lt;/div&gt;</code>                   |
+| 如果生成的div类名是有顺序的 |  可以使用自增符号<code>$</code><br> 作用为使带有$​的为止从1开始自增   | .demo$*3  | <code>&lt;div class=&quot;demo1&quot;&gt;&lt;/div&gt;</code><br><code>&lt;div class=&quot;demo2&quot;&gt;&lt;/div&gt;</code><br><code>&lt;div class=&quot;demo3&quot;&gt;&lt;/div&gt;</code> |
+|     在标签内部书写内容      |            可以在标签名后面用{}将书写内容包含             | h1{title} |                      <code>&lt;h1&gt;title&lt;/h1&gt;</code>                       |</p>
+</li>
+<li><p>快速生成CSS样式的Emment语法</p>
+<blockquote>
+<p>用Emment生成CSS样式基本采取简写形式（一般取首字母）即可</p>
+</blockquote>
+<p>示例：</p>
+<ol>
+<li>比如w200，再按下tab，可以生成<code>width: 200px</code></li>
+<li>比如lh26，再按下tab，可以生成<code>line-height: 26px</code></li>
+<li>比如tac，再按下tab，可以生成<code>text-align: center</code></li>
+</ol>
+</li>
+</ul>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

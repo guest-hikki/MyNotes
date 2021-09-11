@@ -1,0 +1,976 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:PHP基础</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="php-">PHP基础笔记</h1>
+<h3 id="-">一、简单概念</h3>
+<ol>
+<li><p>PHP的介绍：PHP是一种运行在服务器端的脚本语言，可以嵌入到HTML中</p>
+</li>
+<li><p>PHP的代码标记：<img src="images/PHP/image-20210711081848490.png" alt="image-20210711081848490">[^注1]</p>
+</li>
+<li><p>PHP的语句分隔符：分号（;)</p>
+<p>[^注1]:在纯PHP文件中一般不会写入<strong>?&gt;</strong>，而若是要嵌入到HTML文件中，则必须添加<strong>?&gt;</strong>。</p>
+</li>
+</ol>
+<hr>
+<h3 id="-">二、变量</h3>
+<ol>
+<li>变量的命名规则：变量名必须以$开头</li>
+<li><p>预定义变量：系统自动定义的变量，都是数组：<img src="images/PHP/image-20210711082739325.png" alt="image-20210711082739325"></p>
+</li>
+<li><p>可变变量：可以试用一个变量<strong>$a</strong>保存另一个变量<strong>$b</strong>的变量名，则有<strong>$$a</strong> ==<strong>$b</strong></p>
+</li>
+<li><p>变量传值：值传递和引用传递</p>
+<p>（1）值传递：</p>
+<pre><code class="lang-php">&lt;?php
+    $a = 1;
+    $b = $a; // 在数据段中重新开辟了一个地址，里面存放与$a指向的地址相同的值，将$b指向这个新开辟的地址
+    $b = 2;
+    echo $a,$b; // 1 2 
+</code></pre>
+<p>（2）引用传递</p>
+<pre><code class="lang-php">&lt;?php
+    $a = 1;
+    $b = &amp;$a; // 将$b指向$a指向的数据段中的地址
+    $b = 2;
+    echo $a,$b; // 2 2 
+</code></pre>
+</li>
+</ol>
+<ol start="5">
+<li>内存四区</li>
+</ol>
+<blockquote>
+<p>栈区</p>
+<p>堆区</p>
+<p>数据段</p>
+<p>代码段</p>
+</blockquote>
+<ol start="6">
+<li>代码执行流程</li>
+</ol>
+<blockquote>
+<ol>
+<li>代码装载：从脚本文件中读取代码，进行编译，将编译的结果（字节码）存放到代码段中</li>
+<li>代码执行：从代码段中逐行读取代码，同时将变量保存的数据存储到数据段中，将数据段中数据对应的地址，存储到栈区中存储的变量名中</li>
+<li>脚本执行结束：系统会回收所有的数据（栈区、代码段）</li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="-">三、常量</h3>
+<ol>
+<li><p>定义（在定义时必须赋值）</p>
+<p>（1）使用define( )函数定义</p>
+<pre><code class="lang-php">&lt;?php
+     define(&#39;PI&#39;,3.14)
+</code></pre>
+<p>（2）使用const关键字定义</p>
+<pre><code class="lang-php">&lt;?php
+    const PI = 3.14
+</code></pre>
+</li>
+<li><p>常量的命名规则：通常使用大写字母且前端没有$符号，且可以使用特殊符号[^注2]</p>
+</li>
+</ol>
+<p>[^注2]:若使用了特殊符号则必须使用constant( )函数获取它保存的值</p>
+<ol start="3">
+<li>常用的系统普通常量：系统帮助用户定义的常量</li>
+</ol>
+<blockquote>
+<pre><code class="lang-test">PHP_VERSION：PHP版本号
+
+PHP_INT_SIZE：PHP中整型所占的字节数
+
+PHP_INT_MAX：PHP中整型所能表示的最大值
+</code></pre>
+</blockquote>
+<ol start="4">
+<li>常用的系统魔术常量：系统帮助用户定义的常量，常量值会根据环境的变化而变化，但是用户不能改变</li>
+</ol>
+<blockquote>
+<pre><code class="lang-test">__DIR__：当前执行脚本在所在电脑上的绝对位置（不带有自身文件名）
+
+__FILE__：当前执行脚本在所在电脑上的绝对路径（带有自身文件名）
+
+__LINE__：当前变量所在行数
+
+__NAMESPACE__：当前所属的命名空间
+
+__CLASS__：当前所属的类
+
+__METHOD__：当前所属的方法
+</code></pre>
+</blockquote>
+<hr>
+<h3 id="-">四、数据类型</h3>
+<ol>
+<li>PHP是一种弱类型语言，其变量本身没有类型。所以说PHP中的数据类型是指数据本身的类型。</li>
+<li>PHP中的八种数据类型 —— 三大类八小类</li>
+</ol>
+<blockquote>
+<ul>
+<li><p>简单数据类型：</p>
+</li>
+<li><p>整型（int）：4个字节存储，表示整数类型</p>
+</li>
+<li><p>浮点型（float/double）：8个字节存储，表示小数类型或者int类型存不下的整数类型<a href="int型在存储了超过自身最大大小的数据之后会自动转化为float类型，且会损失精度">^注3</a></p>
+</li>
+</ul>
+<ol start="3">
+<li><p>字符串型（string）：系统根据其长度自动分配空间，使用引号包含</p>
+</li>
+<li><p>布尔类型（bool）：ture 和 false</p>
+</li>
+<li><p>复合数据类型</p>
+</li>
+<li><p>对象类型（object）：存放对象</p>
+</li>
+<li><p>数组类型（array）：一次性存放多个数据</p>
+</li>
+<li><p>特殊数据类型</p>
+</li>
+<li><p>资源类型（resource）：存放资源数据（PHP外部数据，如：数据库、文件）</p>
+</li>
+<li>空类型（NULL）：不能运算</li>
+</ol>
+</blockquote>
+<ol start="3">
+<li>类型转换</li>
+</ol>
+<blockquote>
+<ol>
+<li>强制转换的规则：在变量前增加一个括号，然后在里面写上对应的类型（对数据复制的内容进行转换，不会改变原有数据的类型）</li>
+<li>settype( )函数：会更改原有的数据类型</li>
+</ol>
+<p><img src="images/PHP/image-20210711165023466.png" alt="image-20210711165023466"></p>
+</blockquote>
+<blockquote>
+<p>其它类型转布尔类型：</p>
+<p><img src="images/PHP/image-20210711163728549.png" alt="image-20210711163728549"></p>
+<p>其它类型转数值：</p>
+<ol>
+<li>布尔true为1，false为0</li>
+<li>字符串转数值的特性：<ul>
+<li>以字母开头的字符串永远为0</li>
+<li>以数字开头的字符串，取到碰到数字以外的字符为止（可以包含一个小数点，但不能同时包含两个）</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<ol start="4">
+<li>类型判断</li>
+</ol>
+<blockquote>
+<ol>
+<li>使用类型判断的一系列函数<strong>is_类型名</strong>( )，来判断类型，得到的是布尔类型</li>
+<li>使用gettype( )函数，得到该类型对应的字符串</li>
+</ol>
+</blockquote>
+<ol start="5">
+<li>进制</li>
+</ol>
+<p>在使用int类型的数据时，可以使用二进制、八进制、十进制、十六进制表示。<a href="在使用echo函数输出时，都会以10进制输出">^注4</a></p>
+<blockquote>
+<p>二进制（bin）：0b + 二进制数</p>
+<p>八进制（oct）：0 + 八进制数</p>
+<p>十进制（dec）：十进制数</p>
+<p>十六进制（hex）：0x + 十六进制数</p>
+</blockquote>
+<blockquote>
+<p>进制转换函数举例：</p>
+<p>二进制转十进制：bindec( )</p>
+<p>十进制转十六进制：dechex( )</p>
+</blockquote>
+<ol start="6">
+<li>科学计数法</li>
+</ol>
+<blockquote>
+<p>float + e + int ：表示float * 10 ^ (int)</p>
+</blockquote>
+<ol start="7">
+<li>变量比较表</li>
+</ol>
+<p><img src="images/PHP/image-20210711171202303.png" alt="image-20210711171202303"></p>
+<blockquote>
+<p>empty( )：用于判断变量存储的值是否为空</p>
+<p>is_null( ) 和 isset( )：用于判断变量本身是否存在</p>
+</blockquote>
+<hr>
+<h3 id="-">五、运算符</h3>
+<ul>
+<li>赋值运算符（<code>=</code>）：在内存中开辟一个位置存储符号右边的值，并将这个开辟的内存地址赋值给符号左侧的变量</li>
+<li>算数运算符：<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code><a href="除法和取模运算的除数不能为0，且取模运算的对象必须为两个int类型数据">^注5</a></li>
+</ul>
+<ul>
+<li>比较运算符：<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code> 、<code>&lt;=</code>、<code>==</code>、<code>!=</code>、<code>===</code> 、<code>!==</code></li>
+</ul>
+<blockquote>
+<p><code>==</code>与<code>!=</code>：比较左边和右边的数据大小（如：123 == &#39;123&#39; 为true）</p>
+<p><code>===</code>与<code>!==</code>：比较左边和右边的数据大小和数据类型（如：123 === &#39;123&#39;为false）</p>
+</blockquote>
+<ul>
+<li>逻辑运算符：<code>&amp;&amp;</code>、<code>||</code>、<code>!</code></li>
+</ul>
+<blockquote>
+<p>A &amp;&amp; B;    =&gt;  若A为真，则执行B操作</p>
+<p>A || B;      =&gt; 若A为假，则执行B操作</p>
+<p>（注：表达式A、B 必须有返回值）</p>
+</blockquote>
+<ul>
+<li>连接运算符：<code>.</code>、<code>.=</code></li>
+</ul>
+<blockquote>
+<p><code>.</code>：拼接两个字符串</p>
+<p><code>.=</code>：相当于将拼接后的字符串赋值给左边的字符串</p>
+</blockquote>
+<ul>
+<li>错误抑制符：<code>@</code></li>
+</ul>
+<blockquote>
+<p>在PHP中，有一些错误可以提前预知，但是这些错误可能无法避免，但是又不希望报错给用户看，这可以使用错误抑制符处理，一般在生产环境中使用</p>
+</blockquote>
+<ul>
+<li>三目运算符：即C中的<code>?:语句</code></li>
+<li>自操作运算符：<code>++</code>、<code>--</code></li>
+<li>位运算符：<code>&amp;</code>、<code>|</code>、<code>~</code>、<code>^</code>、<code>&lt;&lt;</code>、<code>&gt;&gt;</code></li>
+</ul>
+<blockquote>
+<p><code>&lt;&lt;</code>：按位左移，相当于乘以2</p>
+<p><code>&gt;&gt;</code>：按位右移，相当于不会出现小数的除以2</p>
+</blockquote>
+<ul>
+<li><strong>运算符的优先级</strong></li>
+</ul>
+<p><a href="[PHP: 运算符优先级 - Manual](https://www.php.net/manual/zh/language.operators.precedence.php">参考文档</a>)</p>
+<hr>
+<h3 id="-">六、流程控制</h3>
+<ul>
+<li><p>分支结构</p>
+<ul>
+<li>if-else语句</li>
+<li>switch-case语句</li>
+</ul>
+</li>
+<li><p>循环结构</p>
+<ul>
+<li><p>for循环</p>
+</li>
+<li><p>while循环</p>
+</li>
+<li><p>do-while循环</p>
+</li>
+<li><p>foreach循环（处理数组）</p>
+<pre><code class="lang-php">&lt;?php
+    foreach($arr as $key =&gt; $value){
+        // 循环第i次执行，相当于将索引数组中的第i个元素赋值给$key，将$arr[$key]赋值给$value
+    }
+</code></pre>
+<blockquote>
+<p>foreach的实现原理：</p>
+<ol>
+<li>foreach重置数组指针指向首元素</li>
+<li>进入foreach循环，通过指针访问指向的元素，将下标取出放在<code>$key</code>中，将值取出放到<code>$value</code>中</li>
+<li>指针后移</li>
+<li>重复2和3，直到指针指向空</li>
+</ol>
+</blockquote>
+</li>
+<li><p>循环控制：break，continue</p>
+</li>
+</ul>
+</li>
+<li><p>流程控制替代语法</p>
+</li>
+</ul>
+<blockquote>
+<p>​    PHP本身是嵌入到HTML中的脚本语言，需要在HTML中写一些关于判断或循环的结构语法。在需要PHP与HTML混搭时，可以使用PHP的替代语法</p>
+<blockquote>
+<p>替代语法的规则：</p>
+<p>将左大括号<code>{</code>替换为<code>:</code></p>
+<p>将右大括号<code>}</code>替换为<code>end + 起始标记;</code></p>
+<p>（如：while(A){B}  会被替换为 while(A): B endwhile;）</p>
+</blockquote>
+</blockquote>
+<hr>
+<h3 id="-">七、文件包含</h3>
+<ol>
+<li><p>文件包含的定义：在一个PHP脚本中，去将另外一个PHP文件包含进来，去合作完成一些事情</p>
+</li>
+<li><p>文件包含的分类：</p>
+<blockquote>
+<p>向上包含（索要）：使用被包含文件中的内容，实现代码共享，一般在文件的最开始进行包含</p>
+<p>向下包含（给予）：将自己的内容在被包含文件中使用，实现代码共享，一般在文件的末尾进行包含</p>
+</blockquote>
+</li>
+<li><p>文件包含的作用：使用协作的方式让多个脚本共同完成一件事情</p>
+</li>
+<li><p>文件包含的四种形式：</p>
+<blockquote>
+<ol>
+<li><p>include：包含文件，重复包含同一文件会执行多次并因为重复定义报错</p>
+</li>
+<li><p>include_once：包含文件，且系统会自动判断文件是否已经包含过，保证一个文件只会被包含一次4</p>
+<blockquote>
+<p>若使用include包含的文件找不到，则会报warning</p>
+</blockquote>
+</li>
+<li><p>require：与include相同</p>
+</li>
+<li><p>require_once：与include_once相同</p>
+<blockquote>
+<p>若使用requite包含的文件找不到，则会报error</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<p>格式示例：include &#39;被包含的文件名字&#39; <a href="如果使用这种方式（相对路径），必须保证被包含文件和当前文件在同一个目录下">^注6</a></p>
+</li>
+</ol>
+<ol start="5">
+<li>文件加载时，被包含文件时单独编译的。若是被包含文件出现错误，原文件只有在执行到文件包含语句时，才会报错。<a href="在PHP代码在编译完成后，才会执行语句。若是出现错误，则会直接报错，不会执行语句">^注7</a></li>
+</ol>
+<pre><code class="lang-test">补充说明——
+PHP代码的执行流程如下：
+1. 读取代码文件（PHP程序）
+2. 编译：将PHP代码转换为字节码（生成opcode）
+3. 使用zendengine来解析opcode，按照字节码的进行逻辑运算
+4. 将运算结果转化为对应的HTML代码
+</code></pre>
+<ol start="6">
+<li>文件加载的路径：使用绝对路径或相对路径都行、</li>
+</ol>
+<blockquote>
+<p>嵌套包含时的路径问题：若使用<code>./</code>或<code>../</code>包含其它文件A的文件B被另一个文件C嵌套，则<code>./</code>或<code>../</code>代表的目录可能会发生改变，即将文件C的目录作为当前目录，而不是文件B的目录，若B与C的目录不同，则会导致找不到文件A而出错，此时，就要用到绝对路径</p>
+</blockquote>
+<hr>
+<h3 id="-">八、函数</h3>
+<ol>
+<li><p>函数的定义方法</p>
+<blockquote>
+<pre><code class="lang-php">&lt;? php
+    function 函数名(参数){
+        函数体;
+    }
+</code></pre>
+</blockquote>
+</li>
+<li><p>可以再代码的任意位置定义函数，然后再代码的任意位置执行函数：因为在编译的时候，已经将函数编译为字节码存放到内存中了，所以可以再任意位置执行函数。</p>
+</li>
+<li><p>函数调用流程：</p>
+<blockquote>
+<ol>
+<li>系统调用函数，会去内存中寻找该函数，判断函数是否存在</li>
+<li>系统会在栈区开辟内存空间运行函数</li>
+<li>系统会查看函数是否含有形参</li>
+<li>系统会判断函数调用时是否含有实参</li>
+<li>系统会将实参的值取出，赋值给形参，相当于给形参重新开辟了一段内存存储和实参相同的值（值传递）</li>
+<li>执行函数体</li>
+</ol>
+</blockquote>
+</li>
+<li><p>函数调用默认为值传递，但是也可以使用引用传递（让函数拿到的外部数据，能够在函数内部改变）</p>
+<blockquote>
+<p>基本定义语法：</p>
+<pre><code class="lang-php">&lt;? php
+   function 函数名(&amp;参数){
+       函数体;
+   }
+</code></pre>
+</blockquote>
+</li>
+<li><p>返回值：使用return语句返回，且返回值可以是任意数据类型</p>
+</li>
+<li><p>变量作用域：</p>
+<blockquote>
+<ol>
+<li>全局变量：用户在函数外部定义的变量，不允许在函数内部使用，生命周期直到脚本允许结束</li>
+<li><p>局部变量：用户在函数内部定义的变量，只允许在当前函数内部使用，生命周期直到函数执行结束</p>
+</li>
+<li><p>超全局变量：系统定义的变量，没有访问限定[^注8]</p>
+</li>
+</ol>
+<p>[^注8]:系统会将所有的全局变量保存在超全局变量<code>$GLOBALS</code>中，可以在函数内部通过数组的方式使用超全局变量<code>$GLOBALS</code>访问局部变量</p>
+</blockquote>
+</li>
+<li><p>global关键字：在函数的内部和外部，对一个同名的变量使用同一块内存地址保存数据（函数内部使用）</p>
+<blockquote>
+<ul>
+<li>若使用global关键字定义的变量在函数外部有同名变量，那么系统在函数内部使用global关键字定义的变量会直接指向函数外部同名变量指向的内存地址</li>
+<li>若使用global关键字定义的变量在函数外部找不到同名变量，那么系统会自动在全局空间（即函数外部）定义一个与函数内部使用global关键字定义的变量指向同一个内存地址的同名变量</li>
+</ul>
+</blockquote>
+</li>
+<li><p>静态变量：</p>
+<blockquote>
+<ol>
+<li>定义方法：使用static关键字定义</li>
+<li>作用：跨函数共享数据（同一个函数被多次调用，静态变量在函数结束后并不会被删除，而会在下一次调用时，将上次函数执行结束的静态变量直接赋值给该静态变量，而原有给静态变量赋值的语句将无效）</li>
+<li>原理：系统在编译时会自动为静态变量赋值，而函数在调用时，会自动跳过有static关键字的这一句代码</li>
+<li>使用场景：统计函数被调用的次数、为了统筹函数多次调用得到的不同结果</li>
+</ol>
+</blockquote>
+</li>
+<li><p>可变函数：使用一个$变量保存函数名，则可以直接使用<code>$变量();</code>的方式调用函数，一般在回调函数中使用。<a href="将一个函数A的函数名和一些参数传入给另一个函数B去使用，在函数B中，调用函数A进行一系列操作">^注9</a></p>
+</li>
+</ol>
+<ol start="10">
+<li><p>匿名函数：</p>
+<blockquote>
+<ol>
+<li><p>定义语法：</p>
+<pre><code class="lang-php">&lt;? php 
+ $变量 = function(){
+      函数体
+  }; 
+</code></pre>
+</li>
+<li><p>调用语法：</p>
+<pre><code class="lang-php">&lt;? php
+  $变量();
+</code></pre>
+</li>
+<li><p>函数内部的匿名函数在函数执行结束后不会被释放。若函数内部的匿名函数在使用函数的局部变量，则该局部变量也不会被释放，因为在函数内部还有对应的函数（匿名函数）在引用，即形成了一个闭包，为了让我们在特定的环境下使用内部函数不会出错。</p>
+</li>
+<li>变量保存匿名函数，本质上是得到了一个闭包对象(closure)。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>函数的返回类型：可加可不加</p>
+<blockquote>
+<p><img src="images/PHP基础/image-20210815163511508.png" alt="image-20210815163511508"></p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h3 id="-">九、伪类型</h3>
+<ol>
+<li><p>伪类形：PHP中不存在的类型，是为了方便我们查看PHP操作手册而存在的</p>
+</li>
+<li><p>分类：</p>
+<blockquote>
+<ul>
+<li><p>mixed：混合（任意）类型，只要是PHP中规定的类型即可</p>
+</li>
+<li><p>number：数值类型，即整型或浮点型</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h3 id="-">十、字符串</h3>
+<ol>
+<li><p>定义方式：</p>
+<blockquote>
+<ol>
+<li><p>使用引号（单双皆可）定义：适用于比较短（不超过一行）的字符串</p>
+<blockquote>
+<ul>
+<li><p>单引号字符串中能识别的转义字符只有<code>\&#39;</code></p>
+</li>
+<li><p>双引号字符串中不能识别的转义字符只有<code>\&#39;</code>，因为没必要</p>
+</li>
+<li><p>双引号中因为能够区分变量和<code>\$</code>字符，所以能够识别变量，而单引号不行。但是若$后的字符不是变量名，系统会报错。为了避免这种情况发生，我们一般给变量使用专业标识符进行区分。[^注10]</p>
+</li>
+</ul>
+<p>[^注10]:专业标识符就是给变量加上一组大括号，如：{$a}</p>
+</blockquote>
+</li>
+<li><p>heredoc结构化定义：定义没有双引号的双引号字符串</p>
+<pre><code class="lang-php">&lt;?php
+    $str = &lt;&lt;&lt;EOD
+        字符串内容
+EOD;
+</code></pre>
+</li>
+<li><p>nowdoc结构化定义：定义没有单引号的单引号字符串</p>
+<pre><code class="lang-php">&lt;?php
+    $str = &lt;&lt;&lt;&#39;EOD&#39;
+        字符串内容
+EOD;
+</code></pre>
+<blockquote>
+<p>结构化定义语法：</p>
+<ol>
+<li>EOD代表边界符</li>
+<li>在上边界符的后面不能有任何代码，包括注释</li>
+<li>下边界符必须写在最左边顶格写，同时下边界符后面只能跟分号，不能跟其它任何东西</li>
+<li>在两个边界符之间，所有的代码都将看作字符串本身，包括注释</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>字符串长度：</p>
+<blockquote>
+<p>基本函数：<code>strlen()</code>，使用<code>strlen()</code>会返回字符串的字节数，它争对ASCII交换码，此时一个中文会占3个字节</p>
+<p>若需要使用多字节字符串长度处理函数，则要加载PHP中的mbstring扩展（mb：multi bytes）</p>
+<blockquote>
+<ol>
+<li><p>在php.ini中找到<code>extension = php_mbstring.dll</code>，开启扩展</p>
+</li>
+<li><p>重启apache</p>
+</li>
+<li><p>使用<code>mb_strlen()</code>函数即可</p>
+<blockquote>
+<p>mb_strlen(string <code>$str</code>, string <code>$encoding</code> = mb_internal_encoding()): [mixed]</p>
+<p><code>$str</code>：为待处理的字符串</p>
+<p><code>$encoding</code>：为字符集，默认为&#39;ASCII&#39;。处理中文使用 &#39;utf-8&#39; ，此时一个中文长度</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</blockquote>
+</li>
+<li><p>字符串相关函数</p>
+<blockquote>
+<ol>
+<li>转换函数<ul>
+<li><code>implode(分隔符, 数组)</code>：将数组中的元素使用分隔符连接为一个字符串，若不指定分隔符，则不含分隔符</li>
+<li><code>explode(分隔符, 目标字符串)</code>：将字符串按照指定的分隔符进行分割，得到数组</li>
+<li><code>str_split(字符串，字符长度)</code>：按照指定长度拆分字符串得到数组</li>
+</ul>
+</li>
+<li>截取函数<ul>
+<li><code>trim(字符串, 待过滤的字符)</code>：去除字符串首尾待过滤的字符，默认为空格，可以设定多个待过滤的字符</li>
+<li><code>ltrim(字符串, 待过滤的字符)</code>：去除字符串开头的待过滤的字符，默认为空格，可以设定多个待过滤的字符</li>
+<li><code>rtrim(字符串, 待过滤的字符)</code>：去除字符串末尾的待过滤的字符，默认为空格，可以设定多个待过滤的字符</li>
+<li><code>substr(字符串, 起始位置, 长度)</code>：返回字符串对应的子串</li>
+<li><code>strstr(字符串，字串开始字符)</code>：从字串开始字符第一次出现的位置开始截取到最末尾（可以用来取后缀名）</li>
+</ul>
+</li>
+<li>大小写转换函数<ul>
+<li><code>strtolower(字符串)</code>：将字符串全部转换为小写</li>
+<li><code>strtoupper(字符串)</code>：将字符串全部转换为大写</li>
+<li><code>ucfirst(字符串)</code>：将字符串首字符转换为大写，若首字符不是字母，则不做操作</li>
+</ul>
+</li>
+<li>查找函数<ul>
+<li><code>strpos(字符串，查找的字符[，起始位置])</code>：查找该字符串首次出现的位置</li>
+<li><code>strrpos(字符串，查找的字符[，起始位置])</code>：查找该字符串最后一次出现的位置</li>
+</ul>
+</li>
+<li>替换函数<ul>
+<li><code>str_replace(子串, 子串的替换值, 母串)</code>：将目标字符串中部分字符串进行替换</li>
+</ul>
+</li>
+<li>格式化函数<ul>
+<li><code>printf(字符串)/sprintf(字符串)</code>：格式化输出 —— 与C语言相同</li>
+</ul>
+</li>
+<li>其它函数<ul>
+<li><code>str_repeat(字符串，重复次数)</code>：重复某个字符串，不会修改原字符串</li>
+<li><code>str_suffle(字符串)</code>：打乱字符串</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h3 id="-">十一、数组</h3>
+<ol>
+<li><p>定义语法：</p>
+<blockquote>
+<ol>
+<li><p>使用array关键字定义</p>
+<blockquote>
+<p>$变量 = array(元素1, 元素2, 元素3, …);</p>
+</blockquote>
+</li>
+<li><p>使用中括号包裹数据</p>
+<blockquote>
+<p>$变量 = [元素1, 元素2, 元素3, …];</p>
+</blockquote>
+</li>
+<li><p>隐形定义数组</p>
+<blockquote>
+<p>$变量[下标] = 数据;</p>
+<p>若下标不指定且数组为空，则默认从0开始。若在前面已经给该数组的某些元素赋过值，则下标不指定，默认从已赋值的下标最大者+1开始。</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>数组下标的特点：</p>
+<blockquote>
+<ol>
+<li><p>数组的下标可以为整数或者字符串：</p>
+<blockquote>
+<p>如果数组的下标都是整数，则为索引数组</p>
+<p>如果数组的下标都是字符串，则为关联数组</p>
+<p>如果数组的下标既有整数，又有字符串，则为混合数组</p>
+</blockquote>
+</li>
+<li><p>数组元素的顺序以放入的顺序为主，与下标无关</p>
+</li>
+<li><p>数字下标的自增长特性：从0开始自动增长，如果中间手动出现较大的下标，那么后面默认的自增长下标从最大的下标+1开始</p>
+</li>
+<li><p>特殊值下标的自动转换：</p>
+<blockquote>
+<p>arr[false] =&gt; arr[0]</p>
+<p>arr[true] =&gt; arr[1]</p>
+<p>arr[NULL] =&gt; arr[&quot;&quot;]</p>
+</blockquote>
+</li>
+<li><p>PHP中的数组类型没有限制，且数组长度没有限制</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>数组的存储位置是在堆区，会被分配为一块连续的内存</p>
+</li>
+<li><p>多维数组：数组中的元素就是数组，且PHP中的数组没有维度限制，但是一般不超过三维</p>
+</li>
+<li><p>异形数组：数组中的元素既有数组，又有数值，一般不使用，了解即可</p>
+</li>
+<li><p>数组的遍历方法：</p>
+<blockquote>
+<ul>
+<li><p>使用foreach循环遍历一维数组（若为二维数组，使用foreach遍历外层数组，使用下标访问内层数组）</p>
+</li>
+<li><p>使用for循环遍历索引数组：使用<code>count($arr)</code>得到数组长度</p>
+</li>
+<li><p>while配合each和list遍历数组（<strong>注：each函数已经被废弃，此方法了解即可</strong>）</p>
+<blockquote>
+<p><code>each()</code>：获取当前指针指向元素的下标和值，并将其作为一个含有4个元素的数组输出，并将指针后移。</p>
+<blockquote>
+<p>4个元素的数组为：</p>
+<p>arr( [0] =&gt; 下标值, [1] =&gt; 元素值, [&quot;key&quot;]=&gt; 下标值, [&quot;value&quot;]=&gt; 元素值 )</p>
+</blockquote>
+<p><code>list()</code>：list(<code>$var1</code>, <code>$var2</code>, …) = <code>$arr</code>，将<code>$arr</code>数组中的元素按照下标从0递增的顺序批量赋值给( )中的变量，( )中的第一个变量对应<code>$arr[0]</code>，第二个变量对应<code>$arr[1]</code>。</p>
+</blockquote>
+<blockquote>
+<pre><code class="lang-php">&lt;?php
+   while(list($key, $value) = each($arr)){
+       // 函数体
+   }
+</code></pre>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>数组排序函数，会更改原数组：</p>
+<blockquote>
+<ol>
+<li><code>sort()</code>：按照键值顺序排序（下标会重排）</li>
+<li><code>rsort()</code>：按照键值逆序排序（下标会重排）</li>
+<li><code>asort()</code>：按照键值顺序排序（下标与值的对应关系不会改变）</li>
+<li><code>ksort()</code>：按照键名顺序排序（下标与值的对应关系不会改变）</li>
+<li><code>krsort()</code>：按照键名逆序排序（下标与值的对应关系不会改变）</li>
+<li><code>shuffle()</code>：随机打乱数组元素（下标会重排）</li>
+</ol>
+</blockquote>
+</li>
+<li><p>数组指针函数：</p>
+<blockquote>
+<ol>
+<li><p><code>reset()</code>：重置指针，将指针指向数组首元素</p>
+</li>
+<li><p><code>end()</code>：重置指针，将指针指向数组尾元素</p>
+</li>
+<li><p><code>next()</code>：将指针下移，返回下一个元素的值</p>
+</li>
+<li><p><code>prev()</code>：将指针上移，返回上一个元素的值[^注11]</p>
+<p>[^注11]: 当使用<code>next()</code>和<code>prev()</code>将指针移出数组范围时，不能再通过<code>next()</code>和<code>prev()</code>将指针移回数组范围，只能使用指针重置函数<code>reset()</code>和<code>end()</code>将指针重置 ↩</p>
+</li>
+<li><p><code>current()</code>：获取当前指针指向的元素值</p>
+</li>
+<li><p><code>key()</code>：获取当前指针指向的下标值</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>数组相关函数：</p>
+<blockquote>
+<ol>
+<li><code>count()</code>：统计数组中元素的数量</li>
+<li><code>array_push()</code>：向数组末尾加入元素（入栈）</li>
+<li><code>array_pop()</code>：从数组末尾取出元素（出栈）</li>
+<li><code>array_shift()</code>：从数组开头取出元素</li>
+<li><code>array_unshift()</code>：向数组开头加入元素</li>
+<li><code>array_reverse()</code>：翻转数组</li>
+<li><code>in_array(查找的值, 数组)</code>：判断元素在数组中是否存在</li>
+<li><code>array_keys()</code>：返回一个数组的所有下标（索引数组）</li>
+<li><code>array_values()</code>：返回一个数组的所有值（索引数组）</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h3 id="-">十二、错误处理</h3>
+<ol>
+<li><p>定义：错误处理是指系统（或用户）在对某些代码进行执行的时候，发现有错误，就会通过错误处理的形式告知程序员</p>
+</li>
+<li><p>错误分类：</p>
+<blockquote>
+<ol>
+<li>语法错误：用户书写的代码不符合PHP的语法规范，会导致编译不通过，代码不会执行（Parse Error）</li>
+<li>运行时错误：代码编译通过，但是在执行过程中会出现一些条件不满足而导致的错误（Runtime Error）</li>
+<li>逻辑错误：在编写代码时不够规范，导致程序在执行时得不到想要的结果</li>
+</ol>
+</blockquote>
+</li>
+<li><p>错误代号：（所有看到的错误代码在PHP中都被定义成了系统常量，可以直接使用）</p>
+<blockquote>
+<ol>
+<li>系统错误：<ul>
+<li>E_PARSE：编译错误，不会通过编译</li>
+<li>E_ERROR：致命错误，会导致代码不能继续执行，会在错误的位置处停下</li>
+<li>E_WARNING：警告错误，不会影响代码执行，但是可能得到意想不到的结果</li>
+<li>E_NOTICE：通知错误，不会影响代码执行</li>
+</ul>
+</li>
+<li>用户错误：用户在自定义错误除法时，会使用到的错误代号<ul>
+<li>E_USER_ERROR：致命错误，会导致代码不能继续执行，会在错误的位置处停下</li>
+<li>E_USER_WARNING：警告错误，不会影响代码执行，但是可能得到意想不到的结果</li>
+<li>E_USER_NOTICE：通知错误，不会影响代码执行</li>
+</ul>
+</li>
+<li>其它：<ul>
+<li>E_ALL：代表着所有的错误，通常在错误控制时使用，建议用于开发环境</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>注：所有的错误常量（代号），都由一个字节存储，每一种错误对应一个位。在错误控制时，一般使用位操作。</p>
+<p>示例：</p>
+<ol>
+<li>排除通知级别：E_ALL &amp; ~E_NOTICE</li>
+<li>只要警告和通知：E_WARNING | E_NOTICE</li>
+</ol>
+</blockquote>
+</li>
+<li><p>错误触发</p>
+<blockquote>
+<ol>
+<li><p>程序运行触发：系统自动触发，针对语法错误和运行时错误</p>
+</li>
+<li><p>人为触发：知道某些逻辑可能会出错，从而使用对应的判断代码来触发相应的错误提示</p>
+<blockquote>
+<p>使用到的函数：<code>trigger_error(string $error_msg, int $error_type = E_USER_NOTICE): bool</code></p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>错误设置</p>
+<blockquote>
+<ul>
+<li><p>错误显示设置</p>
+<ol>
+<li><p>更改PHP配置文件（php.ini）</p>
+<blockquote>
+<p>display_errors：更改是否显示错误</p>
+<p>error_reporting：显示什么级别的错误</p>
+</blockquote>
+</li>
+<li><p>可以在运行的php脚本中设置</p>
+<blockquote>
+<p>error_reporing( )：设置错误显示级别</p>
+<p>ini_set(配置文件中的配置项, 配置的值)：使用函数修改php配置文件 [^注12]</p>
+</blockquote>
+</li>
+</ol>
+<p>   [^注12]:在脚本文件中配置的配置项级别比配置文件中的级别要高</p>
+</li>
+<li><p>错误日志设置：在生产环境中，一般不显示错误给用户，但又希望捕捉到错误让后台程序员去修改，则需要把错误保存到日志文件中，这就需要设置php.ini文件，或在脚本中修改配置(ini_set)。</p>
+<blockquote>
+<ol>
+<li>开启日志功能：log_errors = On</li>
+<li>指定路径：error_log = 日志的保存路径    </li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>自定义错误处理</p>
+<blockquote>
+<ul>
+<li><p>最简单的错误处理：使用<code>trigger_errors()</code>函数，但是该函数不会阻止系统报错</p>
+</li>
+<li><p>PHP系统中提供了一种用户处理错误的机制：用户在自定义错误处理函数后，将该函数增加到操作系统的错误处理句柄中，然后系统在发现错误后，会执行用户定义的错误函数。实现的方式就是使用<code>set_error_handler()</code>错误处理函数</p>
+<blockquote>
+<p><code>set_error_handler()</code> 具体使用方法：<a href="[PHP: set_error_handler - Manual](https://www.php.net/manual/zh/function.set-error-handler.php">详见PHP手册</a>)</p>
+<p>示例：</p>
+<pre><code class="lang-php">&lt;?php
+    // 自定义错误处理机制
+
+    // 自定义错误处理函数
+    /*
+     * @param1：$errno表示系统提供的错误代码，如：E_ALL、E_NOTICE等
+     * @param2：$errstr表示错误提示信息
+     * @param3：以上两个参数为必要设定的参数，其它参数可以没有
+    */
+    function my_error($errno, $errstr, $errfile, $errline){
+        // error_reporting()：若不加参数，表示获取当前系统设定的所有错误处理级别
+        if(!error_reporting()&amp;$errno){  // 若遇到的错误不在系统要求显示的错误级别之中
+            return false;
+        }
+        switch ($errno){
+            case E_ERROR:
+            case E_USER_ERROR:
+                echo &quot;Fatal error in file $errfile on $errline &lt;br&gt;&quot;;
+                echo &quot;Error info : $errstr &lt;br&gt;&quot;;
+                break;
+            case E_WARNING:
+            case E_USER_WARNING:
+                echo &quot;Warning in file $errfile on $errline &lt;br&gt;&quot;;
+                echo &quot;Error info : $errstr &lt;br&gt;&quot;;
+                break;
+            case E_NOTICE:
+            case E_USER_NOTICE:
+                echo &quot;Notice in file $errfile on $errline &lt;br&gt;&quot;;
+                echo &quot;Error info : $errstr &lt;br&gt;&quot;;
+                break;
+        }
+        return  true;
+    }
+
+    // 修改错误机制
+    set_error_handler(&#39;my_error&#39;);
+</code></pre>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h3 id="-">十三、常用的系统函数</h3>
+<ol>
+<li><p>有关输出的函数</p>
+<ul>
+<li><code>print()</code>：输出格式化字符串</li>
+<li><code>print_r()</code>：以易于理解的方式打印变量，一般用来打印数组</li>
+</ul>
+</li>
+<li><p>有关时间的函数</p>
+<ul>
+<li><code>date()</code>：按照对应的格式打印时间戳（若不给定时间戳，则打印当前时间）</li>
+<li><code>time()</code>：获取当前时间的时间戳</li>
+<li><code>microtime()</code>：获取当前时间的微秒级别的时间戳</li>
+<li><code>strtotime()</code>：将任意英文格式的字符串转化为时间戳</li>
+</ul>
+</li>
+<li><p>有关数学的函数</p>
+<ul>
+<li><code>max()</code>：返回最大值</li>
+<li><code>min()</code>：返回最小值</li>
+<li><code>rand()</code>：指定区间得到一个随机整数</li>
+<li><code>mt_rand()</code>：与<code>rand()</code>一样，但效率更高</li>
+<li><code>round()</code>：四舍五入</li>
+<li><code>ceil()</code>：向上取整</li>
+<li><code>floor()</code>：向下取整</li>
+<li><code>pow()</code>：乘方</li>
+<li><code>abs()</code>：绝对值</li>
+<li><code>sqrt()</code>：开平方根</li>
+</ul>
+</li>
+<li><p>有关函数的函数</p>
+<ul>
+<li><code>function_exists()</code>：判断指定的函数名字是否在内存中存在</li>
+<li><code>func_get_arg()</code>：在自定义函数中去获取指定数值对应的参数，可以理解为指定的参数为所有参数数组的下标（从0开始）</li>
+<li><code>func_get_args()</code>：在自定义函数中获取所有的参数（数组），下标从0开始</li>
+<li><code>func_num_args()</code>：在自定义函数中获取参数的数量<a href="`func_get_args()`和`func_num_args()`统计的是调用函数时对应的实参，而不是形参">^注13</a></li>
+</ul>
+</li>
+</ol>
+<p>   [^ 注11]: </p>
+<ol start="5">
+<li><p>处理脚本让浏览器按照指定字符集解析的方法：</p>
+<pre><code class="lang-php">&lt;?php
+    header(&#39;Content-type:text/html;charset=utf-8&#39;);
+</code></pre>
+</li>
+</ol>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>
